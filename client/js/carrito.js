@@ -54,3 +54,24 @@ function mostrarTablaCompras() {
     }
     document.querySelector("#tblCompras").innerHTML = html;
 }
+
+//###########################################
+
+async function load() {
+    let container = document.querySelector("#use-ajax");
+    container.innerHTML = "<h1>Loading...</h1>";
+    try {
+        let response = await fetch('http://localhost:3000/mock.json');
+        if (response.ok) {
+            let t = await response.json()
+            container.innerHTML = t;
+        }
+        else
+            container.innerHTML = "<h1> Error - Failed URL </h1>";
+    }
+    catch(response){
+        container.innerHTML = "<h1> Connecion error </h1>";
+    }; 
+}
+
+load(); 
